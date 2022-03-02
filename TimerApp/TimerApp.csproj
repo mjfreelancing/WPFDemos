@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<LangVersion>Latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ReactiveUI" Version="17.1.50" />
+		<PackageReference Include="ReactiveUI.Fody" Version="17.1.50" />
+		<PackageReference Include="ReactiveUI.WPF" Version="17.1.50" />
+	</ItemGroup>
+
+</Project>
