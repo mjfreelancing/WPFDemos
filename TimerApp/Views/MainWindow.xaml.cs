@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Windows;
 using ReactiveUI;
@@ -25,10 +26,14 @@ namespace TimerApp.Views
                     .Subscribe(formatted =>
                     {
                         ElapsedTime.Text = formatted;
-                    });
+                    })
+                    .DisposeWith(disposables);
 
-                this.BindCommand(ViewModel, vm => vm.ResumeTimerCommand, view => view.StartButton);
-                this.BindCommand(ViewModel, vm => vm.PauseTimerCommand, view => view.StopButton);
+                this.BindCommand(ViewModel, vm => vm.ResumeTimerCommand, view => view.StartButton)
+                    .DisposeWith(disposables);
+
+                this.BindCommand(ViewModel, vm => vm.PauseTimerCommand, view => view.StopButton)
+                    .DisposeWith(disposables);
             });
         }
 
