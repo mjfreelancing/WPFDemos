@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:reactiveUi="http://reactiveui.net"
     xmlns:viewModels="clr-namespace:TimerApp.ViewModels"
-    Title="MainWindow"
+    Title="Timer Demo"
     Width="800"
     Height="450"
     x:TypeArguments="viewModels:MainWindowViewModel"

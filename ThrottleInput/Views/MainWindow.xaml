@@ -1,0 +1,78 @@
+﻿<reactiveUi:ReactiveWindow
+    x:Class="ThrottleInput.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:reactiveUi="http://reactiveui.net"
+    xmlns:viewModels="clr-namespace:ThrottleInput.ViewModels"
+    Title="Throttle Demo"
+    Width="800"
+    Height="450"
+    x:TypeArguments="viewModels:MainWindowViewModel"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="UserInputStyle" TargetType="{x:Type TextBox}">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="IsEnabled" Value="True" />
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Background" Value="LightGray" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBox
+            x:Name="UserInput"
+            Grid.Row="0"
+            IsEnabled="False"
+            Style="{StaticResource UserInputStyle}" />
+        <Grid Grid.Row="1" Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="AllowUserQuery"
+                Grid.Column="0"
+                Margin="15"
+                Click="OnAllowUserQuery"
+                FontSize="20">
+                Allow User Query
+            </Button>
+            <!--<Button
+                x:Name="DisableThreeSeconds"
+                Grid.Column="1"
+                Margin="15"
+                FontSize="20">
+                Disable All 3 Seconds
+            </Button>-->
+            <Button
+                x:Name="LongQuery"
+                Grid.Column="2"
+                Margin="15"
+                FontSize="20">
+                Long Async Query
+            </Button>
+        </Grid>
+        <TextBox
+            x:Name="QueryOutput"
+            Grid.Row="2"
+            Margin="15"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            TextWrapping="WrapWithOverflow" />
+    </Grid>
+</reactiveUi:ReactiveWindow>
