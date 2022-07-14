@@ -26,27 +26,27 @@ namespace ThrottleInput.Views
 
 
                 Observable
-                .CombineLatest(
-                    ViewModel.WhenAnyValue(vm => vm.AllowUserQuery),
-                    ViewModel.WhenAnyValue(vm => vm.IsBusy),
-                    (allowUserQuery, isBusy) => new
+                    .CombineLatest(
+                        ViewModel.WhenAnyValue(vm => vm.AllowUserQuery),
+                        ViewModel.WhenAnyValue(vm => vm.IsBusy),
+                        (allowUserQuery, isBusy) => new
+                        {
+                            AllowUserQuery = allowUserQuery,
+                            IsBusy = isBusy
+                        })
+                    .Subscribe(state =>
                     {
-                        AllowUserQuery = allowUserQuery,
-                        IsBusy = isBusy
-                    })
-                .Subscribe(state =>
-                {
-                    if (!state.IsBusy)
-                    {
-                        // Update the button text
-                        AllowUserQuery.Content = state.AllowUserQuery
-                            ? "Disable User Query"
-                            : "Allow User Query";
-                    }
+                        if (!state.IsBusy)
+                        {
+                            // Update the button text
+                            AllowUserQuery.Content = state.AllowUserQuery
+                                ? "Disable User Query"
+                                : "Allow User Query";
+                        }
 
-                    AllowUserQuery.IsEnabled = !state.IsBusy;
-                })
-                .DisposeWith(disposables);
+                        AllowUserQuery.IsEnabled = !state.IsBusy;
+                    })
+                    .DisposeWith(disposables);
 
 
 
